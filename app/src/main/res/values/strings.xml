@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RecyclerViewTest</string>
+    <string name="add_item_input_hint">Add an item</string>
+    <string name="add_item_button_text">Add</string>
 </resources>
