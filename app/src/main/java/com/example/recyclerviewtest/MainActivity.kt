@@ -1,7 +1,7 @@
 package com.example.recyclerviewtest
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.EditText
@@ -9,13 +9,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val listItems: ArrayList<String> = ArrayList()
+    private val listItems: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // text data
+        // test data
         listItems.add("one")
         listItems.add("two")
         listItems.add("three")
@@ -35,3 +35,4 @@ class MainActivity : AppCompatActivity() {
         rv_list.adapter?.notifyDataSetChanged()
     }
 }
+

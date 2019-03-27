@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ListItemAdapter(val listItems: ArrayList<String>,val context: MainActivity) : RecyclerView.Adapter<ViewHolder>() {
+class ListItemAdapter(private val listItems: ArrayList<String>, private val context: MainActivity) : RecyclerView.Adapter<ViewHolder>() {
     override fun getItemCount(): Int {
         return listItems.size
     }
@@ -16,10 +16,17 @@ class ListItemAdapter(val listItems: ArrayList<String>,val context: MainActivity
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.listItemText.text = listItems.get(position)
+        holder.listItemText.text = listItems[position]
+
+        holder.checkmark.setOnClickListener {
+            listItems.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, itemCount - position)
+        }
     }
 }
 
 class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     val listItemText = view.list_item_text!!
+    val checkmark = view.checkmark!!
 }
