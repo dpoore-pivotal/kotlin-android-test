@@ -1,6 +1,8 @@
 package com.example.recyclerviewtest
 
+import android.os.AsyncTask
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +21,25 @@ class ListItemAdapter(private val listItems: ArrayList<String>, private val cont
         holder.listItemText.text = listItems[position]
 
         holder.checkmark.setOnClickListener {
+            DeleteTodo(context, Todo(listItems[position])).execute()
             listItems.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, itemCount - position)
+        }
+    }
+
+    private class DeleteTodo(var context: MainActivity, var todo: Todo) : AsyncTask<Void, Void, Boolean>() {
+        override fun doInBackground(vararg params: Void?): Boolean {
+            context.todoDatabase!!.todoDao().delete(todo)
+            return true
+        }
+
+        override fun onPostExecute(bool: Boolean?) {
+            if (bool!!) {
+                Log.d("************", "success")
+            } else {
+                Log.e("fail", ":(")
+            }
         }
     }
 }
