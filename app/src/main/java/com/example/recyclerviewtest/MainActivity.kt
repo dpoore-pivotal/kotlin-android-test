@@ -15,14 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // test data
-        listItems.add("one")
-        listItems.add("two")
-        listItems.add("three")
-        listItems.add("four")
-        listItems.add("five")
-        listItems.add("six")
-
         rv_list.layoutManager = LinearLayoutManager(this)
         rv_list.adapter = ListItemAdapter(listItems, this)
     }
